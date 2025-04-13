@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitChat - Your Fitness Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 400px;
+            height: 80vh;
+            background-color: rgba(25, 25, 25, 0.8);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chat-header {
+            background: linear-gradient(90deg, #11998e, #38ef7d);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chat-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .chat-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .chat-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .bot-message {
+            background-color: rgba(56, 239, 125, 0.2);
+            border-top-left-radius: 4px;
+            align-self: flex-start;
+            border-left: 3px solid #38ef7d;
+        }
+        
+        .user-message {
+            background-color: rgba(30, 144, 255, 0.2);
+            border-top-right-radius: 4px;
+            align-self: flex-end;
+            border-right: 3px solid #1e90ff;
+        }
+        
+        .chat-footer {
+            padding: 16px;
+            background-color: rgba(33, 33, 33, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 24px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(90deg, #11998e, #38ef7d);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .suggestion-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        
+        .chip {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        
+        .chip:hover {
+            background-color: rgba(56, 239, 125, 0.3);
+        }
+        
+        /* Simple animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message {
+            animation: fadeIn 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#11998e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6.7 6.7a8 8 0 1 1 10.6 10.6"/>
+                        <path d="M8 16l-1.95 1.95a1 1 0 0 0 0 1.41l.59.59a1 1 0 0 0 1.41 0L10 18"/>
+                        <path d="M16 8l1.95-1.95a1 1 0 0 0 0-1.41l-.59-.59a1 1 0 0 0-1.41 0L14 6"/>
+                    </svg>
+                </div>
+                <h2>FitChat</h2>
+            </div>
+            <div class="status">
+                <div class="status-dot"></div>
+                <span>Online</span>
+            </div>
+        </div>
+        
+        <div class="chat-body">
+            <div class="message bot-message">
+                Hey there! 👋 I'm your personal fitness assistant. How can I help with your fitness journey today?
+            </div>
+            
+            <div class="suggestion-chips">
+                <div class="chip">Workout plans</div>
+                <div class="chip">Nutrition advice</div>
+                <div class="chip">Track progress</div>
+            </div>
+            
+            <div class="message user-message">
+                I want to start strength training. Any tips for beginners?
+            </div>
+            
+            <div class="message bot-message">
+                Great choice! For beginners in strength training:
+                <br><br>
+                1. Start with compound exercises (squats, deadlifts, bench press)
+                <br>
+                2. Focus on proper form before adding weight
+                <br>
+                3. Aim for 2-3 sessions per week with rest days in between
+                <br>
+                4. Track your progress to stay motivated
+                <br><br>
+                Would you like me to suggest a beginner's workout plan?
+            </div>
+        </div>
+        
+        <div class="chat-footer">
+            <input type="text" class="chat-input" placeholder="Type your message...">
+            <button class="send-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Simple functionality to demonstrate the UI
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.querySelector('.chat-input');
+            const sendButton = document.querySelector('.send-btn');
+            const chatBody = document.querySelector('.chat-body');
+            const chips = document.querySelectorAll('.chip');
+            
+            // Function to add a new message
+            function addMessage(text, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+                messageDiv.textContent = text;
+                chatBody.appendChild(messageDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+            
+            // Handle send button click
+            sendButton.addEventListener('click', function() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    
+                    // Simulate bot response after a short delay
+                    setTimeout(() => {
+                        const responses = [
+                            "I'll help you with that! What specific information are you looking for?",
+                            "That's a great fitness goal. Let me provide some tailored advice for you.",
+                            "I have several recommendations that might help. Would you like to know more?",
+                            "I can definitely assist with that. Let me put together some resources for you."
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse);
+                    }, 1000);
+                }
+            });
+            
+            // Allow sending message with Enter key
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendButton.click();
+                }
+            });
+            
+            // Handle suggestion chips
+            chips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    addMessage(this.textContent, true);
+                    
+                    // Simulate bot response for each chip
+                    setTimeout(() => {
+                        let response = '';
+                        switch(this.textContent) {
+                            case 'Workout plans':
+                                response = "I can help you create a personalized workout plan. What's your fitness level and what are your goals?";
+                                break;
+                            case 'Nutrition advice':
+                                response = "Nutrition is key to fitness success! Are you looking for meal planning, macro tracking, or general dietary guidance?";
+                                break;
+                            case 'Track progress':
+                                response = "Tracking your progress is motivating! Would you like to track measurements, weight, or workout performance?";
+                                break;
+                            default:
+                                response = "I'll help you with that! What specifically are you interested in?";
+                        }
+                        addMessage(response);
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

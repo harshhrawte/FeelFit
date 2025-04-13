@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FeelFit | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand">FeelFit</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to FeelFit</h1>
+            <p>Your all-in-one fitness guide and chatbot support system.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn">About Us</a>
+                <a href="{{ url_for('chatbot') }}" class="btn primary">Go to Chatbot</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>FeelFit is your virtual fitness partner. Whether you're just starting out or a seasoned fitness enthusiast, our AI-powered chatbot provides custom workout plans, nutrition tips, and mental health advice tailored just for you.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>What We Offer</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3>Workout Routines</h3>
+                <p>From beginner to advanced, explore goal-based workout plans created by certified trainers.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Nutrition Plans</h3>
+                <p>Personalized diet charts based on your body goals and lifestyle habits.</p>
+            </div>
+            <div class="feature-box">
+                <h3>AI Chatbot Coach</h3>
+                <p>Ask anything—our chatbot gives instant answers and support 24/7.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Progress Tracker</h3>
+                <p>Monitor your fitness goals, weight loss, and workout consistency.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="toggle-icon">+</span>
+            Is FeelFit free to use?
+          </div>
+          <div class="faq-answer">
+            Yes! Our core features are completely free. Premium plans may be introduced in the future.
+          </div>
+        </div>
+      
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="toggle-icon">+</span>
+            Can I chat with a real trainer?
+          </div>
+          <div class="faq-answer">
+            Currently, our chatbot is AI-powered. Live trainer support is in the pipeline.
+          </div>
+        </div>
+      
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="toggle-icon">+</span>
+            Is my fitness data secure?
+          </div>
+          <div class="faq-answer">
+            Absolutely. We value your privacy and ensure all your data is encrypted and safe.
+          </div>
+        </div>
+      </div>
+      
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 FeelFit. All rights reserved.</p>
+    </footer>
+</body>
+</html>

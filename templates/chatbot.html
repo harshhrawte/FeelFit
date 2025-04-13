@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeelFit - Your Fitness Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#11998e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6.7 6.7a8 8 0 1 1 10.6 10.6"/>
+                        <path d="M8 16l-1.95 1.95a1 1 0 0 0 0 1.41l.59.59a1 1 0 0 0 1.41 0L10 18"/>
+                        <path d="M16 8l1.95-1.95a1 1 0 0 0 0-1.41l-.59-.59a1 1 0 0 0-1.41 0L14 6"/>
+                    </svg>
+                </div>
+                <h2>FeelFit</h2>
+            </div>
+            <div class="status">
+                <div class="status-dot"></div>
+                <span>Online</span>
+            </div>
+        </div>
+        
+        <div class="chat-body">
+            <div class="message bot-message">
+                Hey there! 👋 I'm your personal fitness assistant. How can I help with your fitness journey today?
+            </div>
+            
+            <div class="suggestion-chips">
+                <div class="chip">Workout plans</div>
+                <div class="chip">Nutrition advice</div>
+                <div class="chip">Track progress</div>
+            </div>
+            
+            <div class="message user-message">
+                I want to start strength training. Any tips for beginners?
+            </div>
+            
+            <div class="message bot-message">
+                Great choice! For beginners in strength training:
+                <br><br>
+                1. Start with compound exercises (squats, deadlifts, bench press)
+                <br>
+                2. Focus on proper form before adding weight
+                <br>
+                3. Aim for 2-3 sessions per week with rest days in between
+                <br>
+                4. Track your progress to stay motivated
+                <br><br>
+                Would you like me to suggest a beginner's workout plan?
+            </div>
+        </div>
+        
+        <div class="chat-footer">
+            <input type="text" class="chat-input" placeholder="Type your message...">
+            <button class="send-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
